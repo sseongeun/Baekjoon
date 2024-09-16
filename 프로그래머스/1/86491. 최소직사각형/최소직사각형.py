@@ -6,5 +6,8 @@ def solution(sizes):
         i.sort(reverse=True)
         garo.append(i[0])
         sero.append(i[1])
-    
-    return max(garo)*max(sero)
+
+    g=max(garo)
+    s=max(sero)
+
+    return g*s
