@@ -1,0 +1,9 @@
+# 0~23까지의 HOUR 컬럼을 생성한후
+# 일치하는 hour에 해당하는 컬럼수를 계산한다
+SET @HOUR := -1;
+SELECT @HOUR := @HOUR+1 AS HOUR,
+    (SELECT COUNT(*)
+    FROM ANIMAL_OUTS
+    WHERE HOUR(DATETIME)= @HOUR)AS COUNT
+FROM ANIMAL_OUTS
+WHERE @HOUR<23;
