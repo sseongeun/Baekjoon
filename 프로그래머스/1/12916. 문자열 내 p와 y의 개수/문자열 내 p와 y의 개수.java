@@ -1,26 +1,22 @@
 class Solution {
     boolean solution(String s) {
         boolean answer = true;
-        int countP=0;
-        int countY=0;
-        
-        
-
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == 'p' || s.charAt(i) == 'P') {
-                countP++;
-            } else if (s.charAt(i) == 'y' || s.charAt(i) == 'Y') {
-                countY++;
+        int cntP=0;
+        int cntY=0;
+        char[] arr = s.toCharArray();
+        for(char c:arr){
+            if (c=='p' || c=='P'){
+                cntP+=1;
             }
+            else if(c=='y'|| c=='Y'){
+                cntY+=1;
+            }
+            else{;}
         }
-
-        if (countP==countY){
-            return true;
-        }
-        else{
+        
+        if (cntP!=cntY){
             return false;
         }
-
- 
+        return answer;
     }
 }
