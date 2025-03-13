@@ -1,13 +1,6 @@
 def solution(phone_number):
-    phone_number=list(phone_number)
+    length = len(phone_number)
+    remain = phone_number[-4:]
+    front  = "*"*(length-4)
     
-    last="".join(phone_number[-4:])
-    print(last)
-    
-    front="*" * (len(phone_number)-4)
-    print(front)
-    
-    answer=front+last
-    return answer
-   
-        
+    return front+remain
