@@ -1,10 +1,11 @@
+from collections import deque
 def solution(arr):
-    result=[]
-    prev=arr[0]
-    result.append(prev)
-    for i in range(1,len(arr)):
-        if arr[i]!=prev:
-            result.append(arr[i])
-            prev=arr[i]
-        
-    return result
+    answer=[]
+    answer.append(arr[0])
+    arr=deque(arr)
+
+    while arr:
+        curr =arr.popleft()
+        if curr != answer[-1]:
+            answer.append(curr)
+    return answer
