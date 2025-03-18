@@ -1,9 +1,6 @@
 def solution(arr):
-    minNum= min(arr)
-    arr.remove(minNum)
-
-    if len(arr)==0:
+    if len(arr)==1:
         return [-1]
     else:
+        arr.remove(min(arr))
         return arr
-    
