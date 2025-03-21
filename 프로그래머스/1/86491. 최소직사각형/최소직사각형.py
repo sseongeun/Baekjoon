@@ -1,13 +1,10 @@
 def solution(sizes):
-    garo=[]
-    sero=[]
-
-    for i in sizes:
-        i.sort(reverse=True)
-        garo.append(i[0])
-        sero.append(i[1])
-
-    g=max(garo)
-    s=max(sero)
-
-    return g*s
+    list1=[]
+    list2=[]
+    for size in sizes:
+        size.sort()
+        list1.append(size[0])
+        list2.append(size[1])
+        
+    return max(list1)* max(list2)
+    
