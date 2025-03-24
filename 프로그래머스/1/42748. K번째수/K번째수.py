@@ -1,10 +1,9 @@
 def solution(array, commands):
-    array=[0]+array
     answer=[]
 
-    for i in commands:
-        newArray=array[i[0]:i[1]+1]
-        newArray.sort()
-        answer.append(newArray[i[2]-1])
-    return answer
+    for command in commands:
+        temp_array = array[command[0]-1:command[1]]
+        temp_array.sort()
+        answer.append(temp_array[command[2]-1])
     
+    return answer
