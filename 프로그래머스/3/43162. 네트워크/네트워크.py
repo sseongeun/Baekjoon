@@ -1,18 +1,18 @@
-from collections import deque
+def dfs(computers,n,start,visited):
+    if visited[start]==False:
+        visited[start]=True
+        for i in range(n):
+            if computers[start][i]==1 and visited[i]== False:
+                dfs(computers,n,i,visited)
+    else:
+        return
 
-def dfs(curr,computers,n,visited):
-    visited[curr]=True
-    for i in range(n):
-        if visited[i]==False and computers[curr][i]==1:
-            dfs(i,computers,n,visited)    
-        
-    
 def solution(n, computers):
-    count=0
     visited=[False]*n
+    cnt=0
+    
     for i in range(n):
         if visited[i]==False:
-            dfs(i,computers,n,visited)
-            count+=1
-
-    return count
+            dfs(computers,n,i,visited)
+            cnt+=1
+    return cnt
