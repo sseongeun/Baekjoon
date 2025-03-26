@@ -1,7 +1,10 @@
-SELECT f.FLAVOR
-FROM FIRST_HALF as f
-inner join JULY as j
-on f.FLAVOR=j.FLAVOR
-group by f.flavor
-order by sum(f.total_order)+sum(j.total_order) desc
-limit 3;
+SELECT F.FLAVOR
+FROM FIRST_HALF AS F
+INNER JOIN (
+SELECT FLAVOR,SUM(TOTAL_ORDER) AS TOTAL
+FROM JULY
+GROUP BY FLAVOR
+) I
+ON F.FLAVOR = I.FLAVOR
+ORDER BY F.TOTAL_ORDER + I.TOTAL DESC
+LIMIT 3;
