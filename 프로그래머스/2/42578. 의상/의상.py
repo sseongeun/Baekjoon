@@ -1,19 +1,20 @@
 def solution(clothes):
+    category={}
     
-    comb={}
-
-    for i in clothes:
-        if i[1] not in comb:
-            comb[i[1]]=1
+    for cloth in clothes:
+        if cloth[1] in category.keys():
+            category[cloth[1]].append(cloth[0])
         else:
-            comb[i[1]]+=1
+            category[cloth[1]]=[]
+            category[cloth[1]].append(cloth[0])
+        
 
+    nums=[]
+    for i in category:
+        nums.append(len(category.get(i)))
 
-    nums=comb.values()
-    list(nums)
-
-    result=1
+    sum=1
     for i in nums:
-        result*=(i+1)
+        sum*=(i+1)
     
-    return result-1
+    return sum-1
