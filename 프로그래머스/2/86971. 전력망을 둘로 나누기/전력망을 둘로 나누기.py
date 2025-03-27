@@ -1,48 +1,44 @@
-from collections import deque
+import math
 
-def bfs(graph,start,visited):
-    total=1
-    queue=deque()
+def dfs(start,graph,n):
+    visited=[False]*(n+1)
+    queue=[]
+    cnt=1
     queue.append(start)
     visited[start]=True
     
     while queue:
-        curr = queue.popleft()
+        curr= queue.pop()
+        for neighbor in graph[curr]:
+            if visited[neighbor]== False:
+                visited[neighbor]=True
+                queue.append(neighbor)
+                cnt+=1
+    return cnt
 
-        
-        for i in graph[curr]:
-            if visited[i]==False:
-                queue.append(i)
-                visited[i]=True
-                total+=1
-    return total
-    
-
-def makeGraph(wires,n):
+def make_graph(wires,n):    
     graph=[[] for _ in range(n+1)]
 
-    for i in wires:
-        graph[i[0]].append(i[1])
-        graph[i[1]].append(i[0])
-        graph[i[0]]=list(set(graph[i[0]]))
-        graph[i[1]]=list(set(graph[i[1]]))
+    for wire in wires:
+        graph[wire[0]].append(wire[1])
+        graph[wire[1]].append(wire[0])
+        graph[wire[0]]= list(set(graph[wire[0]]))
+        graph[wire[1]]= list(set(graph[wire[1]]))
+        
     return graph
-    
-
 
 def solution(n, wires):
-    
     result=[]
 
-    # 새로운 그래프를 만드는 방법
-    for i in range(len(wires)): # 특정 간선이 제거될때마다 절대값의 차를 구한다.
-        tempWires = wires[:]
-        tempWires.pop(i)
-        newGraph=makeGraph(tempWires,n)
+    for wire in wires:
+        temp=wires.copy()
+        temp.remove(wire)
 
-        visited = [False]*(n+1)
-        routeLen = bfs(newGraph,1,visited)
-        result.append(abs(routeLen-(n-routeLen)))
+        new_graph = make_graph(temp,n)
 
+        cnt1=dfs(wire[0],new_graph,n)
+        cnt2=dfs(wire[1],new_graph,n)
+
+        result.append(abs(cnt1-cnt2))
 
     return min(result)
