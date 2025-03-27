@@ -1,19 +1,19 @@
 from itertools import permutations
 
 def solution(k, dungeons):
-    perm=permutations(dungeons)
-    result=[]
-    c=k
+    result = []
+
+    perm = list(permutations(dungeons,len(dungeons)))
 
     for i in perm:
-        turn=0
-        k=c
+        power = k
+        curr =0 
         for j in i:
-            if k>=j[0]:
-                k-=j[1]
-                turn+=1
+            if power >= j[0]:
+                power-=j[1]
+                curr+=1
             else:
                 break
-        result.append(turn)
+        result.append(curr)
 
     return max(result)
