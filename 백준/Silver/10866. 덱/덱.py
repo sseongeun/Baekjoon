@@ -1,34 +1,40 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-def func(commands):
-    dq = deque()
-    result = []
-    for command in commands:
-        if "push_front" in command:
-            dq.appendleft(int(command.split()[1]))
-        elif "push_back" in command:
-            dq.append(int(command.split()[1]))
-        elif command == "pop_front":
-            result.append(dq.popleft() if dq else -1)
-        elif command == "pop_back":
-            result.append(dq.pop() if dq else -1)
-        elif command == "front":
-            result.append(dq[0] if dq else -1)
-        elif command == "back":
-            result.append(dq[-1] if dq else -1)
-        elif command == "size":
-            result.append(len(dq))
-        elif command == "empty":
-            result.append(1 if not dq else 0)
+queue=deque()
+N=int(input())
 
-    return result
-       
-    
-n =int(input())
-commands=[]
-for i in range(n):
-    commands.append(input())
-
-answer=func(commands)
-for i in answer:
-    print(i)
+for _ in range(N):
+    command = list(map(str,input().split()))
+    if command[0] == "push_back":
+        queue.append(command[1])
+    elif command[0] == "push_front":
+        queue.appendleft(command[1])
+    elif command[0] == "pop_front":
+        if len(queue)!=0:
+            print(queue.popleft())
+        else:
+            print("-1")
+    elif command[0] == "pop_back":
+        if len(queue)!=0:
+            print(queue.pop())
+        else:
+            print("-1")
+    elif command[0] == "size":
+        print(len(queue))
+    elif command[0] == "empty":
+        if len(queue)==0:
+            print("1")
+        else:
+            print("0")
+    elif command[0]=="front":    
+        if len(queue)==0:
+            print("-1")
+        else:
+            print(queue[0])
+    else:
+        if len(queue)==0:
+            print("-1")
+        else:
+            print(queue[-1])
