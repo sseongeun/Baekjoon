@@ -1,16 +1,17 @@
-N,M=map(int,input().split())
-nlist=[]
-mlist=[]
+N,M = map(int,input().split())
 
-for i in range(N):
-    nlist.append(input())
+n_list=[]
+m_list=[]
+
+for _ in range(N):
+    n_list.append(input())
     
-for i in range(M):
-    mlist.append(input())
+for _ in range(M):
+    m_list.append(input())
+    
+common= list(set(n_list)&set(m_list))
+common.sort()
 
-result=list(set(nlist)&set(mlist))
-result.sort()
-
-print(len(result))
-for i in result:
-    print(i)
+print(len(common))
+for c in common:
+    print(c)
